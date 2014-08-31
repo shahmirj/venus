@@ -58,24 +58,15 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/error_default"
-            android:id="@+id/errorstring"
-            android:visibility="gone"
-            android:textColor="@android:color/holo_red_dark"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginTop="10dp" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
             android:text="@string/forgotpassword"
             android:id="@+id/forgotpassword"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="20dp"
             android:gravity="center_horizontal"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            android:onClick="forgotPassword"
+            android:enabled="true"
+            android:clickable="true" />
 
     </LinearLayout>
 

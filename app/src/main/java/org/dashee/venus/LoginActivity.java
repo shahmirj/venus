@@ -1,39 +1,21 @@
 package org.dashee.venus;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Venus
-    extends Activity
-{
+
+public class LoginActivity
+        extends Activity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.venus, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 
     /**
@@ -46,29 +28,24 @@ public class Venus
     {
         TextView email = (TextView) this.findViewById(R.id.email);
         TextView password = (TextView) this.findViewById(R.id.password);
-        TextView errorString = (TextView) this.findViewById(R.id.errorstring);
-
-        // Set the visibility
-        errorString.setVisibility(View.VISIBLE);
 
         String emailString = email.getText().toString().trim();
 
         if (emailString.length() == 0){
-            errorString.setText(R.string.error_empty_email);
+            email.setError(getString(R.string.error_empty_email));
             return false;
         }
 
         if (!VenusUtils.isValidEmail(emailString)){
-            errorString.setText(R.string.error_invalid_email);
+            email.setError(getString(R.string.error_invalid_email));
             return false;
         }
 
         if (password.getText().length() == 0) {
-            errorString.setText(R.string.error_empty_password);
+            password.setError(getString(R.string.error_empty_password));
             return false;
         }
 
-        errorString.setVisibility(View.GONE);
         return true;
     }
 
@@ -87,5 +64,16 @@ public class Venus
 
         Button signIn = (Button) findViewById(R.id.signin);
         signIn.setText(R.string.connecting);
+    }
+
+    /**
+     * When the user clicks on forgotPassword we create a new activity and
+     * send the user to this location
+     *
+     * @param view The view used for click
+     */
+    public void forgotPassword(View view)
+    {
+        startActivity(new Intent(this, ForgotPasswordActivity.class));
     }
 }

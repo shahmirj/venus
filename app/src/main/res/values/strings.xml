@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Venus</string>
     <string name="hello_world">Have fun with your friends</string>
     <string name="email">Email</string>
@@ -9,12 +10,12 @@
     <string name="forgotpassword">Forgot Password?</string>
     <string name="rememberme">Remember me</string>
     <string name="connecting">Connecting...</string>
-    <string name="copyright">
-        Welcome to the world of confusion, where who is who is never so straight forward. Sign in
-        and begin your journey into the wonderland. Built by Dashee.
-    </string>
-    <string name="error_default">Unknown Error</string>
+    <string name="copyright">        Welcome to the world of confusion, where who is who is never so straight forward. Sign in
+        and begin your journey into the wonderland. Built by Dashee.</string>
     <string name="error_empty_email">Email must be filled in</string>
     <string name="error_empty_password">Password must be filled in</string>
     <string name="error_invalid_email">Email address must be valid</string>
+    <string name="title_activity_forgot_password">ForgotPasswordActivity</string>
+    <string name="title_activity_login_activity">LoginActivity</string>
+
 </resources>
