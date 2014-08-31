@@ -16,4 +16,5 @@
     <string name="error_default">Unknown Error</string>
     <string name="error_empty_email">Email must be filled in</string>
     <string name="error_empty_password">Password must be filled in</string>
+    <string name="error_invalid_email">Email address must be valid</string>
 </resources>

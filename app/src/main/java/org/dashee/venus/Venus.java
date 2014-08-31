@@ -51,8 +51,15 @@ public class Venus
         // Set the visibility
         errorString.setVisibility(View.VISIBLE);
 
-        if (email.getText().length() == 0){
+        String emailString = email.getText().toString().trim();
+
+        if (emailString.length() == 0){
             errorString.setText(R.string.error_empty_email);
+            return false;
+        }
+
+        if (!VenusUtils.isValidEmail(emailString)){
+            errorString.setText(R.string.error_invalid_email);
             return false;
         }
 

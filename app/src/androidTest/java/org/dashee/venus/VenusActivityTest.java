@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 /**
  * Test our Activity Class
  */
@@ -69,7 +71,7 @@ public class VenusActivityTest
      * Make sure that when sign in is clicked without any information
      * then it shows an error message
      */
-    public void testSignInShowsErrorWithInvalidValues()
+    public void testSignInShowsCorrectErrorWhenInvalidValues()
     {
         Button signIn = (Button) this.venus.findViewById(R.id.signin);
         EditText email = (EditText) this.venus.findViewById(R.id.email);
@@ -79,19 +81,31 @@ public class VenusActivityTest
         // Ensure that the original state is set to GONE
         assertTrue(errorString.getVisibility() == View.GONE);
 
-        // Click the sign in button and the error string should be visible and the
-        // error string should be that we are missing the user
+        // Ensure that empty email is spotted
         TouchUtils.clickView(this, signIn);
         assertTrue(errorString.getVisibility() == View.VISIBLE);
         assertEquals(this.venus.getString(R.string.error_empty_email), errorString.getText());
 
-        // Ensure that the empty password error is shown when email is set but password
-        // is empty
+        // Ensure that email is trimmed and checked for empty
+        TextUtils.setText(this.venus, email, "  ");
+        TouchUtils.clickView(this, signIn);
+        assertTrue(errorString.getVisibility() == View.VISIBLE);
+        assertEquals(this.venus.getString(R.string.error_empty_email), errorString.getText());
+
+        // Invalid Email type
+        TextUtils.setText(this.venus, email, "gmail.com");
+        TouchUtils.clickView(this, signIn);
+        assertTrue(errorString.getVisibility() == View.VISIBLE);
+        assertEquals(this.venus.getString(R.string.error_invalid_email), errorString.getText());
+
+        // Ensure Password is not left empty
         TextUtils.setText(this.venus, email, "shahmirj@gmail.com");
         TouchUtils.clickView(this, signIn);
         assertTrue(errorString.getVisibility() == View.VISIBLE);
         assertEquals(this.venus.getString(R.string.error_empty_password), errorString.getText());
 
+        // Every thing is good, so the message should go away
+        TextUtils.setText(this.venus, email, "shahmirj@gmail.com");
         TextUtils.setText(this.venus, password, "helloword");
         TouchUtils.clickView(this, signIn);
         assertTrue(errorString.getVisibility() == View.GONE);
