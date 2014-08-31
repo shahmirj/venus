@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class Venus
     extends Activity
@@ -36,12 +37,47 @@ public class Venus
     }
 
     /**
-     * When we click sign in, go to our server and log the user In
+     * This function will ensure all values are good and return a true
+     * if they are otherwise it will set the errorString and return false
      *
-     * @param v
+     * @return true if all fields are valid
      */
-    public void signIn(View v)
+    private boolean isValidBeforeSigningIn ()
     {
+        TextView email = (TextView) this.findViewById(R.id.email);
+        TextView password = (TextView) this.findViewById(R.id.password);
+        TextView errorString = (TextView) this.findViewById(R.id.errorstring);
+
+        // Set the visibility
+        errorString.setVisibility(View.VISIBLE);
+
+        if (email.getText().length() == 0){
+            errorString.setText(R.string.error_empty_email);
+            return false;
+        }
+
+        if (password.getText().length() == 0) {
+            errorString.setText(R.string.error_empty_password);
+            return false;
+        }
+
+        errorString.setVisibility(View.GONE);
+        return true;
+    }
+
+    /**
+     * When we click sign in, go to our server and log the user In.
+     *
+     * Ensure that if it is not valid, then the error string is set
+     * and the signing in is canceled
+     *
+     * @param view The view used for click
+     */
+    public void signIn(View view)
+    {
+        if (!this.isValidBeforeSigningIn())
+            return;
+
         Button signIn = (Button) findViewById(R.id.signin);
         signIn.setText(R.string.connecting);
     }
