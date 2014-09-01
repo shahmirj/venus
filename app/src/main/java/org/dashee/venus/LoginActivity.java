@@ -1,6 +1,7 @@
 package org.dashee.venus;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +18,11 @@ import org.dashee.venus.fragment.LoginFragment;
 public class LoginActivity
     extends FragmentActivity
 {
-
+    /**
+     * Create our activity and start with the login fragment
+     *
+     * @param savedInstanceState The last instance
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -31,6 +36,20 @@ public class LoginActivity
         getSupportFragmentManager().beginTransaction()
             .add(R.id.fragment_login_container, LoginFragment.makeFragment())
             .commit();
+    }
+
+    /**
+     * Helper function to change the current fragment
+     *
+     * @param fragment The fragment to change to
+     */
+    private void changeFragmentTo(Fragment fragment)
+    {
+        getSupportFragmentManager().beginTransaction()
+            .replace(
+                R.id.fragment_login_container,
+                fragment
+            ).addToBackStack(null).commit();
     }
 
     /**
@@ -118,11 +137,7 @@ public class LoginActivity
         Toast.makeText(this, R.string.forgotpassword_email_sent,
                 Toast.LENGTH_SHORT).show();
 
-        getSupportFragmentManager().beginTransaction()
-           .replace(
-                   R.id.fragment_login_container,
-                   LoginFragment.makeFragment()
-           ).addToBackStack(null).commit();
+        changeFragmentTo(LoginFragment.makeFragment());
     }
 
     /**
@@ -133,10 +148,15 @@ public class LoginActivity
      */
     public void forgotPassword(View view)
     {
-        getSupportFragmentManager().beginTransaction()
-            .replace(
-                R.id.fragment_login_container,
-                ForgotPasswordFragment.makeFragment()
-            ).addToBackStack(null).commit();
+        changeFragmentTo(ForgotPasswordFragment.makeFragment());
+    }
+
+    /**
+     * When the register button is pressed do something
+     *
+     * @param view The view which it was pressed from
+     */
+    public void register(View view)
+    {
     }
 }

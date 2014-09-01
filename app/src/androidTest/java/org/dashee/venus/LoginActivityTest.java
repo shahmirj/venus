@@ -66,9 +66,15 @@ public class LoginActivityTest
         TextUtils.setText(this.loginActivity, password, "helloworld");
 
         // Check signing in works
-        assertEquals("Sign In", signIn.getText());
+        assertEquals(
+            this.loginActivity.getString(R.string.signin),
+            signIn.getText()
+        );
         TouchUtils.clickView(this, signIn);
-        assertEquals("Connecting...", signIn.getText());
+        assertEquals(
+            this.loginActivity.getString(R.string.connecting),
+            signIn.getText()
+        );
     }
 
     /**
@@ -183,7 +189,13 @@ public class LoginActivityTest
             .findFragmentById(R.id.fragment_login_container);
 
         assertTrue(current instanceof LoginFragment);
+    }
 
+    /**
+     * Do nothing test
+     */
+    public void testRegisterClicked()
+    {
 
     }
 }

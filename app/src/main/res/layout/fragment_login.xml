@@ -54,18 +54,39 @@
 
         </LinearLayout>
 
-        <TextView
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/forgotpassword"
-            android:id="@+id/forgotpassword"
-            android:layout_gravity="center_vertical"
             android:layout_marginTop="20dp"
-            android:gravity="center_horizontal"
-            android:textStyle="italic"
-            android:onClick="forgotPassword"
-            android:enabled="true"
-            android:clickable="true" />
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register"
+                android:id="@+id/register"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:textStyle="italic"
+                android:onClick="register"
+                android:enabled="true"
+                android:clickable="true"
+                android:layout_marginRight="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/forgotpassword"
+                android:id="@+id/forgotpassword"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:textStyle="italic"
+                android:onClick="forgotPassword"
+                android:enabled="true"
+                android:clickable="true"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
 
     </LinearLayout>
 
