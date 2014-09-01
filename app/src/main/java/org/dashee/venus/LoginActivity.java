@@ -1,24 +1,36 @@
 package org.dashee.venus;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.dashee.venus.fragment.ForgotPasswordFragment;
+import org.dashee.venus.fragment.LoginFragment;
 
 /**
- * This activity facilitates the login in of the user. It prevents
+ * This activity facilitates the fragment_login in of the user. It prevents
  * the user from going further without logging in
  */
 public class LoginActivity
-        extends Activity {
+    extends FragmentActivity
+{
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.activity_login);
+
+        // Restoring the instance so don't commit a new fragment
+        if (savedInstanceState != null)
+            return;
+
+        getSupportFragmentManager().beginTransaction()
+            .add(R.id.fragment_login_container, LoginFragment.makeFragment())
+            .commit();
     }
 
     /**
@@ -70,6 +82,50 @@ public class LoginActivity
     }
 
     /**
+     * Ensure that all information is valid before sending the email
+     *
+     * @return A boolean representing the state
+     */
+    private boolean isValidBeforeSendingEmail()
+    {
+        TextView email = (TextView) this.findViewById(R.id.email);
+
+        String emailString = email.getText().toString().trim();
+
+        if (emailString.length() == 0){
+            email.setError(getString(R.string.error_empty_email));
+            return false;
+        }
+
+        if (!VenusUtils.isValidEmail(emailString)) {
+            email.setError(getString(R.string.error_invalid_email));
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Send the email to the user when all is well
+     *
+     * @param view The current view
+     */
+    public void sendEmail(View view)
+    {
+        if (!isValidBeforeSendingEmail())
+            return;
+
+        Toast.makeText(this, R.string.forgotpassword_email_sent,
+                Toast.LENGTH_SHORT).show();
+
+        getSupportFragmentManager().beginTransaction()
+           .replace(
+                   R.id.fragment_login_container,
+                   LoginFragment.makeFragment()
+           ).addToBackStack(null).commit();
+    }
+
+    /**
      * When the user clicks on forgotPassword we create a new activity and
      * send the user to this location
      *
@@ -77,6 +133,10 @@ public class LoginActivity
      */
     public void forgotPassword(View view)
     {
-        startActivity(new Intent(this, ForgotPasswordActivity.class));
+        getSupportFragmentManager().beginTransaction()
+            .replace(
+                R.id.fragment_login_container,
+                ForgotPasswordFragment.makeFragment()
+            ).addToBackStack(null).commit();
     }
 }

@@ -19,12 +19,8 @@
     <string name="error_invalid_email">Email address must be valid</string>
     <string name="title_activity_forgot_password">Forgot Password</string>
     <string name="title_activity_login_activity">LoginActivity</string>
-    <string name="forgotpassword_info">
-        Let us help you out just enter your email address and we will send you your details.
-    </string>
-    <string name="forgotpassword_notice">
-        Note all emails are sent from yourpassword@dashee.co.uk and you should not trust
-        any other sources!
-    </string>
+    <string name="forgotpassword_info">Let us help you out just enter your email address and we will send you your details.</string>
+    <string name="forgotpassword_notice">Note all emails are sent from yourpassword@dashee.co.uk and you should not trust
+        any other sources!</string>
     <string name="forgotpassword_email_sent">Your password was sent. Check your email!</string>
 </resources>
