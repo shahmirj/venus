@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * Our main app activity which shows the home page with a list of all
+ * users
+ */
 public class VenusActivity
     extends Activity
 {

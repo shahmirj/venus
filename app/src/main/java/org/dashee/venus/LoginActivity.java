@@ -7,7 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-
+/**
+ * This activity facilitates the login in of the user. It prevents
+ * the user from going further without logging in
+ */
 public class LoginActivity
         extends Activity {
 

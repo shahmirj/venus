@@ -8,6 +8,13 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * An activity useful for when user forgot his/her password and they
+ * want an interface to allow them to send this details to a given email
+ * address.
+ *
+ * This activity should logically be initiated from the loginactivity
+ */
 public class ForgotPasswordActivity
     extends Activity
 {
