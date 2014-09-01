@@ -40,14 +40,6 @@ public class LoginActivityTest
     }
 
     /**
-     *
-     * Ensure that default values are good
-    public void testDefaults()
-    {
-    }
-     */
-
-    /**
      * Test clicking the button does something
      */
     public void testSignIn()
@@ -93,11 +85,6 @@ public class LoginActivityTest
         TextUtils.setText(this.loginActivity, email, "shahmirj@gmail.com");
         TouchUtils.clickView(this, signIn);
         assertEquals(this.loginActivity.getString(R.string.error_empty_password), password.getError());
-
-        // Every thing is good, so the message should go away
-        TextUtils.setText(this.loginActivity, email, "shahmirj@gmail.com");
-        TextUtils.setText(this.loginActivity, password, "helloword");
-        TouchUtils.clickView(this, signIn);
     }
 
     /**
