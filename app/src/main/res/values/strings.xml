@@ -26,5 +26,5 @@
         Note all emails are sent from yourpassword@dashee.co.uk and you should not trust
         any other sources!
     </string>
-
+    <string name="forgotpassword_email_sent">Your password was sent. Check your email!</string>
 </resources>

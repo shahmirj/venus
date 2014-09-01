@@ -1,10 +1,12 @@
 package org.dashee.venus;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ForgotPasswordActivity
     extends Activity
@@ -22,7 +24,9 @@ public class ForgotPasswordActivity
         setContentView(R.layout.forgot_password);
 
         // Enable the home key
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar action = getActionBar();
+        if (action != null)
+            action.setDisplayHomeAsUpEnabled(true);
     }
 
     /**
@@ -73,7 +77,8 @@ public class ForgotPasswordActivity
      * When the sendEmail button is pressed a call is made to the server to
      * send user his/her password.
      *
-     * Make sure though that the email is valid before sending it
+     * Make sure though that the email is valid before sending it. Once sent
+     * let the user know the process was successful by toasting.
      *
      * @param view The view that was clicked
      */
@@ -81,6 +86,12 @@ public class ForgotPasswordActivity
     {
         if (!this.isValidBeforeSigningIn())
             return;
+
+        Toast.makeText(
+                this.getApplicationContext(),
+                R.string.forgotpassword_email_sent,
+                Toast.LENGTH_SHORT
+        ).show();
 
         this.finish();
     }
