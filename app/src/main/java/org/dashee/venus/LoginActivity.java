@@ -263,6 +263,6 @@ public class LoginActivity
             Toast.LENGTH_LONG
         ).show();
 
-        //changeFragmentTo(LoginFragment.makeFragment());
+        changeFragmentTo(LoginFragment.makeFragment());
     }
 }
